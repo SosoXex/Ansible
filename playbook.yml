@@ -36,7 +36,7 @@
   - name: Set list of files
     shell:
      cmd: find -maxdepth 1 -name '*.war' -type f
-     register: war_files
+    register: war_files
 
   - name: Fetch war
     fetch:
