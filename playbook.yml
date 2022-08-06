@@ -40,7 +40,7 @@
 
   - name: Fetch war
     fetch:
-     src: {{ item }}
+     src: "{{ item }}"
      dest: ./build/
      flat: yes
     with_items: "{{ war_files.stdout_lines }}"
