@@ -31,11 +31,11 @@
 
   - name: Use war
     shell:
-     cmd: 'touch 1.txt;echo {{ url4git.stdout_lines }}>>1.txt'
+     cmd: 'touch 1.txt;echo {{ url4git.stdout }}>>1.txt'
   - name: Add environments and pull code
     shell:
      chdir: /tmp/build/
-     cmd: PLINK=$(sed -n '1p' 4maven.txt);PDIR=$(sed -n '2p' 4maven.txt);rm -rf $PDIR;git clone $PLINK
+     cmd: git clone {{ url4git.stdout_lines }}
   - name: build code
     shell:
      chdir: /tmp/build/
