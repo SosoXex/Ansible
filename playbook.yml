@@ -56,11 +56,17 @@
     shell:
      cmd: 'mvn -f {{ baseworkdir }}{{ appdir.stdout }}/pom.xml package'
 
+ - name: Set list of files
+    shell:
+     cmd: "find {{ baseworkdir }}{{ appdir.stdout }}/target -maxdepth 1 -name '*.war' -type f"
+    register: war_files
+
   - name: Fetch war
     fetch:
-     src: "{{ baseworkdir }}{{ appdir.stdout }}/target/"
+     src: "{{ item }}"
      dest: ./build/
      flat: yes
+    with_items: "{{ war_files.stdout_lines }}"
 
 - name: Install Tomcat on TMCT
   hosts: tmct
