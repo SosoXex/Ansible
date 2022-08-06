@@ -61,12 +61,10 @@
      patterns: '*.war'
      recurse: no
     register: war_files
-  - debug:
-     msg: "{{ war_files.files.stdout }}"
-
+ 
   - name: Fetch war
     fetch:
-     src: "{{ item }}"
+     src: "{{ item.path }}"
      dest: ./build/
      flat: yes
     with_items: "{{ war_files.files }}"
