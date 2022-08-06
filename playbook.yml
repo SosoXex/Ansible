@@ -29,7 +29,7 @@
      dest: '{{ baseworkdir }}'
 #VARS
   - name: Read file
-    ansible.builtin.file:
+    file:
      _terms: "{{ baseworkdir }}4maven.txt"
     register: formav
   - debug:
