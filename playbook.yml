@@ -56,18 +56,18 @@
 
   - name: Set list of files
     find:
-     path: "{{ baseworkdir }}{{ appdir.stdout }}/target"
+     path: "{{ baseworkdir }}{{ appdir.stdout }}"
      file_type: file
      patterns: '*.war'
      recurse: no
-    register: war_files
- 
+    register: war_files #list of paths to wars
+
   - name: Fetch war
     fetch:
-     src: "{{ item.path }}"
+     src: "{{ item.path }}" #attribute of the list entry
      dest: ./build/
      flat: yes
-    with_items: "{{ war_files.files }}"
+    with_items: "{{ war_files.files }}" #use list from dictionary
 
 - name: Install Tomcat on TMCT
   hosts: tmct
