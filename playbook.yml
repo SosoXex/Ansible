@@ -1,16 +1,4 @@
 ---
-- name: Set Variables
-  tasks:
-  - name: Add url
-    shell:
-     cmd: sed -n '1p' 4maven.txt
-    register: git_url
-  - name: Add dir
-    shell:
-      cmd: sed -n '1p' 4maven.txt
-    register: pkg_dir
-
-
 - name: Install MAVEN on MVN
   hosts: mvn
   become: yes
@@ -30,16 +18,31 @@
      name: maven
      state: present
 
+  - name: Copy build params
+    copy:
+     src: 4maven.txt
+     dest: /tmp/build/
+
+  - name: Add url
+    shell:
+      chdir: /tmp/build/
+      cmd: sed -n '1p' 4maven.txt
+    register: git_url
+  - name: Add dir
+    shell:
+      chdir: /tmp/build/
+      cmd: sed -n '2p' 4maven.txt
+    register: pkg_dir
+
   - name: Add environments and pull code
     shell:
-     mkdir: /tmp/build/
      chdir: /tmp/build/
-     cmd: git clone '{{ git_url }}'
+     cmd: 'rm -rf {{pkg_dir}};git clone {{git_url}}'
 
   - name: build code
     shell:
      chdir: /tmp/build/
-     cmd: mvn -f '{{ pkg_dir }}/pom.xml' package;\cp '{{ pkg_dir }}/target/*.war' $HOME
+     cmd: 'mvn -f {{pkg_dir}}/pom.xml package;cp {{pkg_dir}}/target/*.war $HOME'
 
   - name: Set list of files
     shell:
