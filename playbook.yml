@@ -55,8 +55,11 @@
      cmd: 'mvn -f {{ baseworkdir }}{{ appdir.stdout }}/pom.xml package'
 
   - name: Set list of files
-    shell:
-     cmd: "find {{ baseworkdir }}{{ appdir.stdout }}/target -maxdepth 1 -name '*.war' -type f"
+    find:
+     path: "{{ baseworkdir }}{{ appdir.stdout }}/target"
+     file_type: file
+     patterns: '*.war'
+     recurse: no
     register: war_files
 
   - name: Fetch war
