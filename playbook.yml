@@ -30,7 +30,7 @@
 
   - name: Pull code
     shell:
-     cmd: PLINK=$(sed -n '1p' 4maven.txt);PDIR=$(sed -n '2p' 4maven.txt);cd $PDIR;mvn package
+     cmd: PLINK=$(sed -n '1p' 4maven.txt);PDIR=$(sed -n '2p' 4maven.txt);cd $PDIR;ls -la
 
   - name: Fetch war
     fetch:
