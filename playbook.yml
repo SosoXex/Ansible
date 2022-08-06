@@ -1,0 +1,10 @@
+---
+- name: Install MAVEN on MVN
+  hosts: mvn
+  become: yes
+
+
+- name: Install Tomcat on TMCT
+  hosts: tmct
+  become: yes
+
