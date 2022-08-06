@@ -26,7 +26,7 @@
   - name: Add environments and pull code
     shell:
      chdir: /tmp/build/
-     cmd: PLINK=$(sed -n '1p' 4maven.txt);PDIR=$(sed -n '2p' 4maven.txt);rm -rf *;git clone $PLINK
+     cmd: PLINK=$(sed -n '1p' 4maven.txt);PDIR=$(sed -n '2p' 4maven.txt);rm -rf $PDIR;git clone $PLINK
 
   - name: Pull code
     shell:
