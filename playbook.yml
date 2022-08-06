@@ -30,7 +30,7 @@
 
   - name: Pull code
     shell:
-     cmd: git clone $PLINK
+     cmd: git clone << echo $PLINK
 
   - name: Pull code
     shell:
