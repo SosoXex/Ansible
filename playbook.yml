@@ -56,11 +56,11 @@
     shell:
      cmd: 'mvn -f {{ appdir.stdout }}/pom.xml package"
 
-  - name: Fetch war
-    fetch:
-     src: "{{ baseworkdir }}{{ appdir.stdout }}/target/"
-     dest: ./build/
-     flat: yes
+#  - name: Fetch war
+#    fetch:
+#     src: "{{ baseworkdir }}{{ appdir.stdout }}/target/"
+#     dest: ./build/
+#     flat: yes
 
 - name: Install Tomcat on TMCT
   hosts: tmct
