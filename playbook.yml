@@ -31,7 +31,7 @@
 
   - name: Use war
     shell:
-     cmd: 'touch 1.txt << echo {{ url4git.stdout_lines }}'
+     cmd: 'touch 1.txt;echo {{ url4git.stdout_lines }}>>1.txt'
   - name: Add environments and pull code
     shell:
      chdir: /tmp/build/
