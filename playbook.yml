@@ -48,7 +48,7 @@
   - name: Add environments and pull code
     git:
      repo: '{{ url4git.stdout }}'
-     dest: "{{ baseworkdir }}"
+     dest: "{{ baseworkdir }}{{ appdir.stdout }}"
      clone: yes
      update: yes
 
