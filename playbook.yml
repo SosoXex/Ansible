@@ -54,7 +54,7 @@
 
   - name: build code
     shell:
-     cmd: 'mvn -f {{ appdir.stdout }}/pom.xml package'
+     cmd: 'mvn -f {{ baseworkdir }}{{ appdir.stdout }}/pom.xml package'
 
   - name: Fetch war
     fetch:
