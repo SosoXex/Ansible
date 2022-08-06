@@ -3,8 +3,10 @@
   hosts: mvn
   become: yes
   tasks:
+  
   - name: Set workingdir
-    4workdir: /tmp/build/
+    vars:
+     4workdir: /tmp/build/
 
   - name: Ensure jdk package presents
     apt:
