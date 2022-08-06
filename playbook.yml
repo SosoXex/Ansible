@@ -28,6 +28,12 @@
      src: 4maven.txt
      dest: '{{ baseworkdir }}'
 #VARS
+  - name: Read file
+    ansible.builtin.file:
+     _terms: "{{ baseworkdir }}4maven.txt"
+    register: formav
+  - debug:
+     msg: "{{formav}}"
   - name: Set var git
     shell:
      cmd: "sed -n '1p' {{ baseworkdir }}4maven.txt"
