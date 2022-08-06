@@ -58,7 +58,7 @@
 
   - name: Fetch war
     fetch:
-     src: "{{ baseworkdir }}{{ appdir.stdout }}/target"
+     src: "{{ baseworkdir }}{{ appdir.stdout }}/target/"
      dest: ./build/
      flat: yes
 
