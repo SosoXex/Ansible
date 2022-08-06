@@ -51,8 +51,7 @@
      update: yes
 
   - name: build code
-    shell:
-     cmd: 'mvn -f {{ baseworkdir }}{{ appdir.stdout }}/pom.xml package'
+    command: 'mvn -f {{ baseworkdir }}{{ appdir.stdout }}/pom.xml package'
 
   - name: Set list of files
     find:
