@@ -23,6 +23,7 @@
 
   - name: Set var
     shell:
+     chdir: /tmp/build/
      cmd: sed -n '1p' 4maven.txt
     register: url4git
   - debug: msg = "{{ war_files.stdout_lines }}"
