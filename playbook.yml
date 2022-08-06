@@ -23,7 +23,7 @@
   - name: Copy build params
     copy:
      src: 4maven.txt
-     dest: {{ 4workdir. }}
+     dest: '{{ 4workdir.stdout }}'
 #VARS
   - name: Set var git
     shell:
