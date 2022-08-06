@@ -28,21 +28,21 @@
   - name: Copy build params
     copy:
      src: 4maven.txt
-     dest: '{{ 4workdir.stdout }}'
+     dest: '{{ baseworkdir.stdout }}'
 #VARS
   - name: Set var git
     shell:
-     cmd: "sed -n '1p' {{ 4workdir.stdout }}4maven.txt"
+     cmd: "sed -n '1p' {{ baseworkdir.stdout }}4maven.txt"
     register: url4git
 
   - name: Set var dir
     shell:
-     cmd: "sed -n '2p' {{ 4workdir.stdout }}4maven.txt"
+     cmd: "sed -n '2p' {{ baseworkdir.stdout }}4maven.txt"
     register: appdir
 
   - name: Remove dir if exists
     file:
-     path: "{{ 4workdir.stdout }}{{ appdir.stdout }}"
+     path: "{{ baseworkdir.stdout }}{{ appdir.stdout }}"
      state: adsent
 
   - name: Add environments and pull code
