@@ -20,7 +20,7 @@
     copy:
      src: 4maven.txt
      dest: /tmp/build/
-
+#VARS
   - name: Set var git
     shell:
      chdir: /tmp/build/
@@ -37,32 +37,40 @@
     shell:
      chdir: /tmp/build/
      cmd: 'rm -rf {{ appdir.stdout }};git clone {{ url4git.stdout }}'
+
   - name: build code
     shell:
      chdir: /tmp/build/
      cmd: 'mvn -f {{ appdir.stdout }}/pom.xml package;cp {{ appdir.stdout }}/target/*.war $HOME'
+
   - name: Set list of files
     shell:
      cmd: find -maxdepth 1 -name '*.war' -type f
     register: war_files
+
   - name: Fetch war
     fetch:
      src: "{{ item }}"
      dest: ./build/
      flat: yes
     with_items: "{{ war_files.stdout_lines }}"
+
 - name: Install Tomcat on TMCT
   hosts: tmct
   become: yes
+
   tasks:
+
   - name: Ensure jdk package presents
     apt:
      name: default-jdk
      state: present
+
   - name: Ensure tomcat package presents
     apt:
      name: tomcat9
      state: present
+
   - name: Ensure tomcat started
     service:
      name: tomcat9
