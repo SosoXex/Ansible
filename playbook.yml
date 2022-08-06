@@ -89,4 +89,3 @@
      dest: /var/lib/tomcat9/webapps/
      owner: tomcat
      group: tomcat
-
