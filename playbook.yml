@@ -59,7 +59,7 @@
      path: "{{ baseworkdir }}{{ appdir.stdout }}"
      file_type: file
      patterns: '*.war'
-     recurse: no
+     recurse: yes #looking for wars in project folders
     register: war_files #list of paths to wars
 
   - name: Fetch war
