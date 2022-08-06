@@ -67,8 +67,9 @@
 
   - name: Copy package file
     copy:
-     src: build/*.war
+     src: build/
      dest: /var/lib/tomcat9/webapps/
      owner: tomcat
      group: tomcat
+
 
