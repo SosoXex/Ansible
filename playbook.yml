@@ -2,41 +2,48 @@
 - name: Install MAVEN on MVN
   hosts: mvn
   become: yes
+  4workdir: /tmp/build/
   tasks:
 
   - name: Ensure jdk package presents
     apt:
      name: default-jdk
      state: present
+
   - name: Ensure git package presents
     apt:
      name: git
      state: present
+
   - name: Ensure maven package presents
     apt:
      name: maven
      state: present
+
   - name: Copy build params
     copy:
      src: 4maven.txt
-     dest: /tmp/build/
+     dest: {{ 4workdir. }}
 #VARS
   - name: Set var git
     shell:
-     chdir: /tmp/build/
-     cmd: sed -n '1p' 4maven.txt
+     cmd: "sed -n '1p' {{ 4workdir.stdout }}4maven.txt"
     register: url4git
 
   - name: Set var dir
     shell:
-     chdir: /tmp/build/
-     cmd: sed -n '2p' 4maven.txt
+     cmd: "sed -n '2p' {{ 4workdir.stdout }}4maven.txt"
     register: appdir
+
+  - name: Remove dir if exists
+    file:
+     path: "{{ 4workdir.stdout }}{{ appdir.stdout }}"
+     state: adsent
 
   - name: Add environments and pull code
     shell:
      chdir: /tmp/build/
-     cmd: 'rm -rf {{ appdir.stdout }};git clone {{ url4git.stdout }}'
+     cmd: 'git clone {{ url4git.stdout }}'
 
   - name: build code
     shell:
