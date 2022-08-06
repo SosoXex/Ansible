@@ -39,7 +39,7 @@
     shell:
      cmd: "sed -n '2p' {{ baseworkdir }}4maven.txt"
     register: appdir
-
+#
   - name: Remove dir if exists
     file:
      path: "{{ baseworkdir }}{{ appdir.stdout }}"
