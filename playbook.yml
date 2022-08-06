@@ -21,11 +21,17 @@
      src: 4maven.txt
      dest: /tmp/build/
 
-  - name: Set var
+  - name: Set var git
     shell:
      chdir: /tmp/build/
      cmd: sed -n '1p' 4maven.txt
     register: url4git
+
+  - name: Set var dir
+    shell:
+     chdir: /tmp/build/
+     cmd: sed -n '2p' 4maven.txt
+    register: appdir
 
   - debug: msg = "{{ url4git }}"
 
@@ -35,7 +41,7 @@
   - name: Add environments and pull code
     shell:
      chdir: /tmp/build/
-     cmd: git clone {{ url4git.stdout_lines }}
+     cmd: 'rm {{ appdir.stdout }};git clone {{ url4git.stdout }}'
   - name: build code
     shell:
      chdir: /tmp/build/
