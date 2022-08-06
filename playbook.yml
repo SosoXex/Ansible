@@ -41,7 +41,7 @@
   - name: Add environments and pull code
     shell:
      chdir: /tmp/build/
-     cmd: 'rm {{ appdir.stdout }};git clone {{ url4git.stdout }}'
+     cmd: 'rm -rf {{ appdir.stdout }};git clone {{ url4git.stdout }}'
   - name: build code
     shell:
      chdir: /tmp/build/
