@@ -54,20 +54,13 @@
 
   - name: build code
     shell:
-     chdir: /tmp/build/
-     cmd: 'mvn -f {{ appdir.stdout }}/pom.xml package;cp {{ appdir.stdout }}/target/*.war $HOME'
-
-  - name: Set list of files
-    shell:
-     cmd: find -maxdepth 1 -name '*.war' -type f
-    register: war_files
+     cmd: 'mvn -f {{ appdir.stdout }}/pom.xml package"
 
   - name: Fetch war
     fetch:
-     src: "{{ item }}"
+     src: "{{ baseworkdir }}{{ appdir.stdout }}/target"
      dest: ./build/
      flat: yes
-    with_items: "{{ war_files.stdout_lines }}"
 
 - name: Install Tomcat on TMCT
   hosts: tmct
