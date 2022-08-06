@@ -2,9 +2,28 @@
 - name: Install MAVEN on MVN
   hosts: mvn
   become: yes
+  tasks:
+  - name: Ensure jdk package presents
+    apt:
+     name: default-jdk
+     state: present
 
+  - name: Ensure maven package presents
+    apt:
+     name: maven
+     state: present
 
 - name: Install Tomcat on TMCT
   hosts: tmct
   become: yes
 
+  tasks:
+  - name: Ensure jdk package presents
+    apt:
+     name: default-jdk
+     state: present
+
+  - name: Ensure tomcat package presents
+    apt:
+     name: tomcat9
+     state: present
