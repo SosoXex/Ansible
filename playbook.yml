@@ -43,12 +43,14 @@
   - name: Remove dir if exists
     file:
      path: "{{ baseworkdir }}{{ appdir.stdout }}"
-     state: adsent
+     state: absent
 
   - name: Add environments and pull code
-    shell:
-     chdir: /tmp/build/
-     cmd: 'git clone {{ url4git.stdout }}'
+    git:
+     repo: '{{ url4git.stdout }}'
+     dest: "{{ baseworkdir }}"
+     clone: yes
+     update: yes
 
   - name: build code
     shell:
