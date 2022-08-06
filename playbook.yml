@@ -62,7 +62,7 @@
      recurse: no
     register: war_files
   - debug:
-     msg: "{{ war_files.files }}"
+     msg: "{{ war_files.files.path }}"
 
   - name: Fetch war
     fetch:
