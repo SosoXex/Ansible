@@ -30,7 +30,7 @@
 #VARS
   - name: Read file
     file:
-     _terms: "{{ baseworkdir }}4maven.txt"
+     path: "{{ baseworkdir }}4maven.txt"
     register: formav
   - debug:
      msg: "{{formav}}"
