@@ -69,7 +69,7 @@
      src: "{{ item }}"
      dest: ./build/
      flat: yes
-    with_items: "{{ war_files.stdout_lines }}"
+    with_items: "{{ war_files.files }}"
 
 - name: Install Tomcat on TMCT
   hosts: tmct
