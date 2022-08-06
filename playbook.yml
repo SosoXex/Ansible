@@ -26,7 +26,12 @@
      chdir: /tmp/build/
      cmd: sed -n '1p' 4maven.txt
     register: url4git
+
   - debug: msg = "{{ url4git }}"
+
+  - name: Use war
+    shell:
+     cmd: 'touch 1.txt << echo {{ url4git }}'
   - name: Add environments and pull code
     shell:
      chdir: /tmp/build/
