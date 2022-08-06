@@ -8,10 +8,39 @@
      name: default-jdk
      state: present
 
+  - name: Ensure git package presents
+    apt:
+     name: git
+     state: present
+
   - name: Ensure maven package presents
     apt:
      name: maven
      state: present
+
+  - name: Copy build params
+    copy:
+     src: 4maven.txt
+     dest: /tmp/build/
+
+  - name: Add environments
+    shell:
+     chdir: /tmp/build/
+     cmd: PLINK=$(sed -n "p1" 4maven.txt) && PDIR =$(sed -n "p2" /tmp/build/4maven.txt)
+
+  - name: Pull code
+    shell:
+     cmd: git clone $PLINK
+
+  - name: Pull code
+    shell:
+      cmd: cd $PDIR && mvn package
+
+  - name: Fetch war
+    fetch:
+     src: ./target/*.war
+     dest: ./build/
+     flat: yes
 
 - name: Install Tomcat on TMCT
   hosts: tmct
@@ -27,3 +56,16 @@
     apt:
      name: tomcat9
      state: present
+
+  - name: Ensure tomcat started
+    service:
+     name: tomcat9
+     state: started
+
+  - name: Copy package file
+    copy:
+     src: ./build/*.war
+     dest: /var/lib/tomcat9/webapps/
+     owner: tomcat
+     group: tomcat
+
