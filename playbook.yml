@@ -2,8 +2,9 @@
 - name: Install MAVEN on MVN
   hosts: mvn
   become: yes
-  4workdir: /tmp/build/
   tasks:
+  - name: Set workingdir
+    4workdir: /tmp/build/
 
   - name: Ensure jdk package presents
     apt:
