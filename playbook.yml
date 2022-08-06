@@ -61,7 +61,7 @@
      patterns: '*.war'
      recurse: no
     register: war_files
-  -debug:
+  - debug:
     msg: "{{ war_files }}"
 
   - name: Fetch war
