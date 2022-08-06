@@ -3,6 +3,7 @@
   hosts: mvn
   become: yes
   tasks:
+
   - name: Ensure jdk package presents
     apt:
      name: default-jdk
@@ -19,6 +20,12 @@
     copy:
      src: 4maven.txt
      dest: /tmp/build/
+
+  - name: Set var
+    shell:
+     cmd: sed -n '1p' 4maven.txt
+    register: url4git
+  - debug: msg = "{{ war_files.stdout_lines }}"
   - name: Add environments and pull code
     shell:
      chdir: /tmp/build/
