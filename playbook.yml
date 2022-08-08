@@ -4,8 +4,8 @@
   become: yes
   vars:
    baseworkdir: /tmp/build/
-  vars_file:
-    file: ./4maven.yml
+  vars_files:
+  - file: ./4maven.yml
 
   tasks:
 
