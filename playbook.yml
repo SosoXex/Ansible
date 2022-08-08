@@ -5,7 +5,7 @@
   vars:
    baseworkdir: /tmp/build/
   vars_files:
-  - file: ./4maven.yml
+   - ./4maven.yml
 
   tasks:
 
