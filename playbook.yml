@@ -6,7 +6,6 @@
    baseworkdir: /tmp/build/
   vars_files:
    - ./4maven.yml
-
   tasks:
 
   - name: Ensure jdk package presents
