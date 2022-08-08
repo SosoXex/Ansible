@@ -2,9 +2,10 @@
 - name: Install MAVEN on MVN
   hosts: mvn
   become: yes
-
   vars:
    baseworkdir: /tmp/build/
+  vars_file:
+    file: ./4maven.yml
 
   tasks:
 
@@ -27,15 +28,7 @@
     copy:
      src: 4maven.txt
      dest: '{{ baseworkdir }}'
-#VARS
-  - name: Set var git
-    command: "sed -n '1p' {{ baseworkdir }}4maven.txt"
-    register: url4git
 
-  - name: Set var dir
-    command: "sed -n '2p' {{ baseworkdir }}4maven.txt"
-    register: appdir
-#
   - name: Remove dir if exists
     file:
      path: "{{ baseworkdir }}{{ appdir.stdout }}"
