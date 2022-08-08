@@ -26,22 +26,22 @@
 
   - name: Remove dir if exists
     file:
-     path: "{{ baseworkdir }}{{ appdir.stdout }}"
+     path: "{{ baseworkdir }}{{ appdir }}"
      state: absent
 
   - name: Add environments and pull code
     git:
-     repo: '{{ url4git.stdout }}'
-     dest: "{{ baseworkdir }}{{ appdir.stdout }}"
+     repo: '{{ url4git }}'
+     dest: "{{ baseworkdir }}{{ appdir }}"
      clone: yes
      update: yes
 
   - name: build code
-    command: 'mvn -f {{ baseworkdir }}{{ appdir.stdout }}/pom.xml package'
+    command: 'mvn -f {{ baseworkdir }}{{ appdir }}/pom.xml package'
 
   - name: Set list of files
     find:
-     path: "{{ baseworkdir }}{{ appdir.stdout }}"
+     path: "{{ baseworkdir }}{{ appdir }}"
      file_type: file
      patterns: '*.war'
      recurse: yes #looking for wars in project folders
