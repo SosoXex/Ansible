@@ -24,11 +24,6 @@
      name: maven
      state: present
 
-  - name: Copy build params
-    copy:
-     src: 4maven.txt
-     dest: '{{ baseworkdir }}'
-
   - name: Remove dir if exists
     file:
      path: "{{ baseworkdir }}{{ appdir.stdout }}"
