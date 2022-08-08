@@ -1,0 +1,28 @@
+---
+- name: install nginx
+  hosts: all
+  become: yes
+
+  vars:
+   source_folder: ./
+   dest_folder: /var/www/html
+
+  tasks:
+  - name: Ensure nginx packages presents
+    apt:
+     name: nginx
+     state: present
+
+  - name: Provisioning html file
+    template: 
+     src: "{{source_folder}}/index.j2" 
+     dest: "{{ dest_folder }}/index.html"
+     mode: 0555
+    notify: Restart NGINX
+
+  handlers:
+  - name: Restart NGINX
+    service:
+     name: nginx
+     state: restarted
+
