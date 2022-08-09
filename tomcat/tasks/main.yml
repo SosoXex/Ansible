@@ -21,4 +21,4 @@
    state: absent
   with_items:
     - '{{ftoremove}}'
-    - '{{fdtoremove}}'
+    - '{{dtoremove}}'
