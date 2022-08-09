@@ -1,7 +1,7 @@
 url4git: https://github.com/koddas/war-web-project.git
 appdir: war-web-project
 tomcatappdir: /var/lib/tomcat9/webapps/
-toremove: /var/lib/tomcat9/webapps/wwp-1.0.0/
+toremove: wwp-1.0.0*
 baseworkdir: /tmp/build/
 smaven: 172.31.16.254
 stomcat: 172.31.31.179

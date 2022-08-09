@@ -17,5 +17,7 @@
 
 - name: Remove dir if exists
   file:
-   path: "{{ toremove }}"
+   path: "{{ item }}"
    state: absent
+  with_items:
+    - "{{tomcatappdir}}{{toremove}}"
