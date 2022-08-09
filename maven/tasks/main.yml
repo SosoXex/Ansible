@@ -41,6 +41,7 @@
 
 - name: Transfer war to tomcat
   synchronize:
+   mode: pull
    src: "{{ item.path }}"
    dest: "{{ tomcatappdir }}"
   with_items: "{{ war_files.files }}"
