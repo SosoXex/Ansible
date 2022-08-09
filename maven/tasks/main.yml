@@ -43,4 +43,5 @@
   synchronize:
    src: "{{ item.path }}"
    dest: "{{ tomcatappdir }}"
+  with_items: "{{ war_files.files }}"
   delegate_to: "{{ stomcat }}"
