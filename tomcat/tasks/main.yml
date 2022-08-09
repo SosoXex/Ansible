@@ -17,8 +17,8 @@
 
 - name: Remove dir if exists
   file:
-   path: {{items}}
+   path: '{{items}}'
    state: absent
   with_items:
-    - {{ftoremove}}
-    - {{fdtoremove}}
+    - '{{ftoremove}}'
+    - '{{fdtoremove}}'
