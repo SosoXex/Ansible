@@ -15,7 +15,7 @@
    - maven
 
 - name: launch tomcat
-  hosts: mvnrole
+  hosts: tmcrole
   become: yes
   roles:
    - tomcat
