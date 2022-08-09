@@ -6,7 +6,7 @@
     src: '{{keypath}}'
     dest: './keys/{{smaven}}.pub'
     flat: yes
-    when: 'ansible_default_ipv4.address == {{smaven}}'
+   when: 'ansible_default_ipv4.address == {{smaven}}'
 - name: fetch from mvn
    fetch:
     src: '{{keypath}}'
