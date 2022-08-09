@@ -8,7 +8,7 @@
    dest: ./keys/maven.pub
    flat: yes
   when: ansible_default_ipv4.address == "{{smaven}}"
-- name: fetch from mvn
+- name: fetch from tomcat
   fetch:
    src: '{{keypath}}'
    dest: ./keys/tomcat.pub
@@ -18,3 +18,15 @@
   apt:
    name: rsync
    state: present
+- name: add keys maven
+  authorized_key:
+    user: root
+    state: present
+    key: "{{ lookup('file', './keys/tomcat.pub') }}"
+  when: ansible_default_ipv4.address == "{{smaven}}"
+- name: add keys tomcat
+  authorized_key:
+    user: root
+    state: present
+    key: "{{ lookup('file', './keys/maven.pub') }}"
+  when: ansible_default_ipv4.address == "{{stomcat}}"
