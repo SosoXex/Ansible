@@ -1,5 +1,3 @@
 ---
 # vars file for maven
-baseworkdir: /tmp/build/
-smaven: 172.31.16.254
-stomcat: 172.31.31.179
+
