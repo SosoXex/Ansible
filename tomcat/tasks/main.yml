@@ -1,5 +1,10 @@
 ---
 # tasks file for tomcat
+- name: Remove dir if exists
+  file:
+   path: "{{ path_to_remove }}"
+   state: absent
+
 - name: Ensure jdk package presents
   apt:
     name: default-jdk
@@ -9,11 +14,6 @@
   apt:
     name: tomcat9
     state: present
-
-- name: Remove dir if exists
-  file:
-   path: "{{ baseworkdir }}{{ appdir }}"
-   state: absent
 
 - name: Ensure tomcat started
   service:
