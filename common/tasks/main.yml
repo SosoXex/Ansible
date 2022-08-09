@@ -5,12 +5,16 @@
 - name: fetch from mvn
   fetch:
    src: '{{keypath}}'
-   dest: './keys/{{smaven}}.pub'
+   dest: ./keys/maven.pub
    flat: yes
   when: ansible_default_ipv4.address == "{{smaven}}"
 - name: fetch from mvn
   fetch:
    src: '{{keypath}}'
-   dest: ./keys/'{{stomcat}}'.pub
+   dest: ./keys/tomcat.pub
    flat: yes
   when: ansible_default_ipv4.address == "{{stomcat}}"
+- name: install rsync
+  apt:
+   name: rsync
+   state: present
