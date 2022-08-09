@@ -17,6 +17,6 @@
   hosts: tmcrole
   become: yes
   vars_files:
-    - ./sources/4tomcat.yml
+   - ./sources/4tomcat.yml
   roles:
    - tomcat
