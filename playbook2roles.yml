@@ -5,9 +5,11 @@
 
   roles:
    - common
-   -
+
 - name: build with maven
   hosts: mvnrole
   become: yes
+  vars_files: ./sources/4maven.yml
   roles:
-   - {  role: maven, vars_files: [./sources/4maven.yml] }
+    - maven
+
