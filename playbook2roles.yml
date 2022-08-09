@@ -5,3 +5,9 @@
 
   roles:
    - common
+   -
+- name: build with maven
+  hosts: mvnrole
+  become: yes
+  roles:
+   - {  role: maven, vars_files: [./sources/4maven.yml] }
