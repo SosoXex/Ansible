@@ -39,9 +39,8 @@
    recurse: yes #looking for wars in project folders
   register: war_files #list of paths to wars
 
-- name: Fetch war
-  fetch:
-   src: "{{ item.path }}" #attribute of the list entry
-   dest: ./build/
-   flat: yes
-  with_items: "{{ war_files.files }}" #use list from dictionary
+- name: Transfer war to tomcat
+  synchronize:
+   src: "{{ item.path }}"
+   dest: "{{ tomcatappdir }}"
+  delegate_to: ""{{stomcat}}"

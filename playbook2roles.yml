@@ -16,5 +16,7 @@
 - name: launch tomcat
   hosts: tmcrole
   become: yes
+  vars_files:
+    - ./sources/4tomcat.yml
   roles:
    - tomcat
