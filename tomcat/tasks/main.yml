@@ -10,11 +10,6 @@
     name: tomcat9
     state: present
 
-- name: Remove dir if exists
-  file:
-   path: "{{ toremove }}"
-   state: absent
-
 - name: Ensure tomcat started
   service:
     name: tomcat9
