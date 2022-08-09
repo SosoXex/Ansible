@@ -14,3 +14,8 @@
   roles:
    - maven
 
+- name: launch tomcat
+  hosts: mvnrole
+  become: yes
+  roles:
+   - tomcat
