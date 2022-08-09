@@ -1,9 +1,8 @@
 ---
 # tasks file for common
-
-- name: fetch from mvn
 - debug:
   msg: "{{smaven}}"
+- name: fetch from mvn
   fetch:
    src: '{{keypath}}'
    dest: './keys/{{smaven}}.pub'
