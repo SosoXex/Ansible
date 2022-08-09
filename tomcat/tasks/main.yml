@@ -1,22 +1,22 @@
 ---
 # tasks file for tomcat
 - name: Ensure jdk package presents
-   apt:
+  apt:
     name: default-jdk
     state: present
 
 - name: Ensure tomcat package presents
-   apt:
+  apt:
     name: tomcat9
     state: present
 
 - name: Ensure tomcat started
-   service:
+  service:
     name: tomcat9
     state: started
 
 - name: Copy package file
-   copy:
+  copy:
     src: build/
     dest: /var/lib/tomcat9/webapps/
     owner: tomcat
