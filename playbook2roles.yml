@@ -1,0 +1,8 @@
+---
+- name: common configuration
+  hosts: tmcrole:mvnrole
+  become: yes
+
+  roles:
+   - common
+ 

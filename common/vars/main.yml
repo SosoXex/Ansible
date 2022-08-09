@@ -1,2 +1,5 @@
 ---
 # vars file for common
+smaven: 172.31.16.254
+stomcat: 172.31.31.179
+keypath: /root/.ssh/id_rsa.pub
