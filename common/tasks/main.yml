@@ -3,15 +3,15 @@
 
 - name: fetch from mvn
 - debug:
-  msg: {{smaven}}
+  msg: "{{smaven}}"
   fetch:
    src: '{{keypath}}'
    dest: './keys/{{smaven}}.pub'
    flat: yes
-  when: ansible_default_ipv4.address == {{smaven}}
+  when: ansible_default_ipv4.address == "{{smaven}}"
 - name: fetch from mvn
   fetch:
    src: '{{keypath}}'
    dest: ./keys/'{{stomcat}}'.pub
    flat: yes
-  when: ansible_default_ipv4.address == {{stomcat}}
+  when: ansible_default_ipv4.address == "{{stomcat}}"
