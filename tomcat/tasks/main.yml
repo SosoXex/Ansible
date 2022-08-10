@@ -18,14 +18,14 @@
     path: "{{ item }}"
     state: absent
   with_items:
-    - "{{ tomcatappdir }}{{ dtoremove }}"
-    - "{{ war_files.files }}"
+    - "{{ tomcatappdir }}{{ dtoremove }}/"
+    - "{{ war_files.files.path }}"
 
 - name: Transfer war to tomcat
   synchronize:
    mode: push
    src: "{{ tomcatappdir }}"
-   dest: "{{ item.path }}"
+   dest: "{{ baseworkdir }}{{ appdir }}{{ item.path }}"
   with_items: "{{ war_files.files }}"
   delegate_to: "{{ smaven }}"
 
