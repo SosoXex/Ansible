@@ -13,13 +13,12 @@
     recurse: no #looking for wars in project folders
   register: war_files #list of paths to wars
 
-- name: Remove dir if exists
+- name: Remove war if exists
   file:
-    path: "{{ item }}"
+    path: "{{ item.path }}"
     state: absent
   with_items:
-    - "{{ tomcatappdir }}{{ dtoremove }}/"
-    - "{{ war_files.files.path }}"
+    - "{{ war_files.files }}"
 
 - name: Transfer war to tomcat
   synchronize:
