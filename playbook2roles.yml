@@ -5,6 +5,14 @@
   roles:
    - common
 
+- name: build with maven
+  hosts: mvnrole
+  become: yes
+  vars_files:
+   - ./sources/4maven.yml
+  roles:
+   - maven
+
 - name: launch tomcat
   hosts: tmcrole
   become: yes
@@ -13,10 +21,3 @@
   roles:
    - tomcat
 
-- name: build with maven
-  hosts: mvnrole
-  become: yes
-  vars_files:
-   - ./sources/4maven.yml
-  roles:
-   - maven

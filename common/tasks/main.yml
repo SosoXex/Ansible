@@ -1,7 +1,5 @@
 ---
 # tasks file for common
-- debug:
-  msg: "{{smaven}}"
 - name: fetch from mvn
   fetch:
    src: '{{keypath}}'
