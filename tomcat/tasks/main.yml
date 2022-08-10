@@ -1,24 +1,37 @@
 ---
 # tasks file for tomcat
-- name: Ensure jdk package presents
-  apt:
-    name: default-jdk
-    state: present
-
-- name: Ensure tomcat package presents
-  apt:
-    name: tomcat9
-    state: present
-
 - name: Ensure tomcat started
   service:
     name: tomcat9
     state: started
 
+- name: Set list of files
+  find:
+    path: "{{ tomcatappdir }}{{ appdir }}"
+    file_type: file
+    patterns: '*.war'
+    recurse: no #looking for wars in project folders
+    register: war_files #list of paths to wars
+
 - name: Remove dir if exists
   file:
-   path: '{{item}}'
-   state: absent
+    path: "{{ item }}"
+    state: absent
   with_items:
-    - '{{ftoremove}}'
-    - '{{dtoremove}}'
+    - "{{ tomcatappdir }}{{ appdir }}"
+    - "{{ war_files.files }}"
+
+- name: Transfer war to tomcat
+  synchronize:
+   mode: push
+   src: "{{ tomcatappdir }}"
+   dest: "{{ item.path }}"
+  with_items: "{{ war_files.files }}"
+  delegate_to: "{{ smaven }}"
+
+- name: check app installed
+  stat:
+   path: "{{ tomcatappdir }}{{ appdir }}"
+  notify:
+  - restart_tomcat
+

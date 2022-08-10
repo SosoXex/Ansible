@@ -1,21 +1,5 @@
 ---
 # tasks file for maven
-
-- name: Ensure jdk package presents
-  apt:
-   name: default-jdk
-   state: present
-
-- name: Ensure git package presents
-  apt:
-   name: git
-   state: present
-
-- name: Ensure maven package presents
-  apt:
-   name: maven
-   state: present
-
 - name: Remove dir if exists
   file:
    path: "{{ baseworkdir }}{{ appdir }}"
@@ -39,10 +23,3 @@
    recurse: yes #looking for wars in project folders
   register: war_files #list of paths to wars
 
-- name: Transfer war to tomcat
-  synchronize:
-   mode: pull
-   src: "{{ item.path }}"
-   dest: "{{ tomcatappdir }}"
-  with_items: "{{ war_files.files }}"
-  delegate_to: "{{ stomcat }}"

@@ -30,3 +30,26 @@
     state: present
     key: "{{ lookup('file', './keys/maven.pub') }}"
   when: ansible_default_ipv4.address == "{{stomcat}}"
+- name: install common apps
+  apt:
+    name: "{{item}}"
+    state: installed
+  with_items:
+    - default-jdk
+
+- name: install maven apps
+  apt:
+    name: "{{item}}"
+    state: installed
+  with_items:
+    - git
+    - maven
+  when: ansible_default_ipv4.address == "{{stomcat}}"
+
+- name: install tomcat apps
+  apt:
+    name: "{{item}}"
+    state: installed
+  with_items:
+    - tomcat
+  when: ansible_default_ipv4.address == "{{smaven}}"
