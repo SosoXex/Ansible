@@ -24,9 +24,12 @@
   synchronize:
    mode: push
    src: "{{ tomcatappdir }}"
-   dest: "{{ baseworkdir }}{{ appdir }}{{ item.name }}"
+   dest: "{{ baseworkdir }}{{ appdir }}/{{ item.name }}"
   with_items: "{{ war_files.files }}"
   delegate_to: "{{ smaven }}"
+
+- debug:
+  msg: "{{ war_files.files }}"
 
 - name: check app installed
   stat:
