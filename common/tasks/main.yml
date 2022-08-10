@@ -44,12 +44,12 @@
   with_items:
     - git
     - maven
-  when: ansible_default_ipv4.address == "{{stomcat}}"
+  when: ansible_default_ipv4.address == "{{smaven}}"
 
 - name: install tomcat apps
   apt:
     name: "{{item}}"
     state: installed
   with_items:
-    - tomcat
-  when: ansible_default_ipv4.address == "{{smaven}}"
+    - tomcat9
+  when: ansible_default_ipv4.address == "{{stomcat}}"
