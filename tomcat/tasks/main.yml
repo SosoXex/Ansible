@@ -13,6 +13,11 @@
     recurse: no #looking for wars in project folders
   register: war_files #list of paths to wars
 
+- name: Remove app if exists
+  file:
+    path: "{{dtoremove}}"
+    state: absent
+
 - name: Remove war if exists
   file:
     path: "{{ item.path }}"
@@ -20,12 +25,9 @@
   with_items:
     - "{{ war_files.files }}"
 
-- debug:
-  var: "{{ war_files.files }}"
-
 - name: check app installed
   stat:
-   path: "{{ tomcatappdir }}{{ appdir }}"
+   path: "{{ dtoremove }}"
   notify:
   - restart_tomcat
 
