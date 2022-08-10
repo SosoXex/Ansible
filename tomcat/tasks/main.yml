@@ -11,7 +11,7 @@
     file_type: file
     patterns: '*.war'
     recurse: no #looking for wars in project folders
-    register: war_files #list of paths to wars
+  register: war_files #list of paths to wars
 
 - name: Remove dir if exists
   file:
