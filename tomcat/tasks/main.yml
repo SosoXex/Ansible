@@ -29,7 +29,7 @@
   delegate_to: "{{ smaven }}"
 
 - debug:
-  msg: {{ war_files.files }}
+  var: "{{ war_files.files }}"
 
 - name: check app installed
   stat:
