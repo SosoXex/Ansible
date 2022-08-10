@@ -20,14 +20,6 @@
   with_items:
     - "{{ war_files.files }}"
 
-- name: Transfer war to tomcat
-  synchronize:
-   mode: push
-   src: "{{ tomcatappdir }}"
-   dest: "{{ baseworkdir }}{{ appdir }}/{{ item.name }}"
-  with_items: "{{ war_files.files }}"
-  delegate_to: "{{ smaven }}"
-
 - debug:
   var: "{{ war_files.files }}"
 
